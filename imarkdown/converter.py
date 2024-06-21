@@ -54,11 +54,11 @@ def _download_img(image_local_storage_directory: str, image_url: str) -> Optiona
     try:
         response = requests.get(image_url)
         now_time = time.strftime("%Y%m%d_%H%M%S", time.localtime(time.time()))
-        image_local_storage_directory = polish_path(image_local_storage_directory)
+        # image_local_storage_directory = polish_path(image_local_storage_directory)
         if not os.path.exists(image_local_storage_directory):
             os.makedirs(image_local_storage_directory, exist_ok=True)
 
-        images_path = f"{image_local_storage_directory}{now_time}{random.randint(1000, 10000)}.png"
+        images_path = f"{image_local_storage_directory}/{now_time}{random.randint(1000, 10000)}.png"
         with open(images_path, "wb") as f:
             f.write(response.content)
         logger.info(f"[imarkdown] <{images_path}> has stored in local successfully")
